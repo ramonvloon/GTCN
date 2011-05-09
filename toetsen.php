@@ -23,36 +23,18 @@
 			mysql_connect($host, $username, $password)or die("Can't connect with mysql: ".mysql_error());
 			mysql_select_db($db_name)or die("Database doesn't exist or isn't reachable");
 
+			$counter = 1;
 			$vragen = mysql_query("SELECT id,vraag, antwoord FROM $tbl_name");
-			$row = mysql_fetch_array($vragen);
-						
-			if (isset($_POST['id'])) {
-				switch ($_POST['id']) {
-					// regel het antwoord dat gegeven is
-				}
-			} else {			
-				if($row){
-					echo $row[0], "- ", $row[1];
-				}
+			while ($fields = mysql_fetch_assoc($vragen)) {
+				echo $fields[0], "- ", $fields[1];
 				?>
 				<br>
-				<input type="radio" name="vraag1" value="goed"><?php echo $row[2];?><br>
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields[2];?><br>
 				
-				<input type="radio" name="vraag1" value="fout">Piet <br>
-				<input type="radio" name="vraag1" value="fout">Puk<br>
-					
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout">Piet <br>
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout">Puk<br>					
 				<?php
-				$row = mysql_fetch_array($vragen);				
-				if($row){
-					echo $row[0], "- ", $row[1];
-				}
-				?>
-				<br>
-				<input type="radio" name="vraag2" value="goed"><?php echo $row[2]; ?><br>
-				<input type="radio" name="vraag2" value="fout">Piet <br>
-				<input type="radio" name="vraag2" value="fout">Puk<br>
-					
-				<?php
+				$counter++;
 			}
 			?>
 			<input type="submit" value="Controleer antwoord"> 
