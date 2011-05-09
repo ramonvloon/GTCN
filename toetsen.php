@@ -26,13 +26,28 @@
 			$counter = 1;
 			$vragen = mysql_query("SELECT * FROM `$tbl_name`;");
 			while ($fields = mysql_fetch_assoc($vragen)) {
-				echo $fields['id'] . "- " . $fields['vraag'];
-				?>
-				<br>
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields['antwoord'];?><br>			
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields['fout1'];?><br>
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields['fout2'];?><br>					
-				<?php
+				echo $counter . "- " . $fields['vraag'];
+				$seed = $fields['seed'];
+				$random1 = rand(11111, 99999);	//	 random nummer voor fout1
+				while ($random1 == $seed) {	//	als ze gelijk zijn gaan we net zolang nieuwe maken tot ze het niet meer zijn (rekening houden met worst case)
+					$random1 = rand(11111, 99999);
+				}
+				$random2 = rand(11111, 99999);	//	 random nummer voor fout2
+				while ($random1 == $random2) {	//	 als ze gelijk zijn gaan we net zolang nieuwe maken tot ze het niet meer zijn (rekening houden met worst case)
+					$random2 = rand(11111, 99999);
+					while ($random2 == $seed) {	// Daarna mag het OOK niet gelijk zijn aan SEED
+						$random2 = rand(11111, 99999);
+					}
+				}
+				echo '<br>';
+				echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$seed.'">'.$fields['antwoord'];
+				echo '<br>';
+				echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$random1.'">'.$fields['fout1'];
+				echo '<br>';
+				if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+					echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$random2.'">'.$fields['fout2'];
+					echo '<br>';
+				}
 				$counter++;
 			}
 			?>
