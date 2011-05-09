@@ -24,7 +24,7 @@
 			mysql_select_db($db_name)or die("Database doesn't exist or isn't reachable");
 
 			$counter = 1;
-			$vragen = mysql_query("SELECT id,vraag, antwoord FROM $tbl_name");
+			$vragen = mysql_query("SELECT * FROM $tbl_name");
 			while ($fields = mysql_fetch_assoc($vragen)) {
 				echo $fields[0], "- ", $fields[1];
 				?>
