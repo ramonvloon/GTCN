@@ -24,13 +24,12 @@
 			mysql_select_db($db_name)or die("Database doesn't exist or isn't reachable");
 
 			$counter = 1;
-			$vragen = mysql_query("SELECT `id`, `vraag`, `antwoord` FROM $tbl_name");
+			$vragen = mysql_query("SELECT * FROM `$tbl_name`;");
 			while ($fields = mysql_fetch_assoc($vragen)) {
 				echo $fields['id'] . "- " . $fields['vraag'];
 				?>
 				<br>
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields['antwoord'];?><br>
-				
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields['antwoord'];?><br>			
 				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields['fout1'];?><br>
 				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields['fout2'];?><br>					
 				<?php
