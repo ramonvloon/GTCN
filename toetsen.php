@@ -10,14 +10,7 @@
 		</script>
 	<form name="form1" action="toetsanswer.php" method="POST">
 		<?php
-			// Settings 
-			$host="localhost";
-			$port="8006";
-			$username="sss301";
-			$password="team301";
-			$db_name="toets";
-			$tbl_name="toets";
-			// End of settings
+			require "config.php";
 
 			$host = $host . ":" . $port;
 			mysql_connect($host, $username, $password)or die("Can't connect with mysql: ".mysql_error());

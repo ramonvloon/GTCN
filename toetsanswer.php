@@ -1,12 +1,5 @@
 <?php
-	// Settings 
-	$host="localhost";
-	$port="8006";
-	$username="sss301";
-	$password="team301";
-	$db_name="toets";
-	$tbl_name="toets";
-	// End of settings
+	require "config.php";
 
 	$host = $host . ":" . $port;
 	mysql_connect($host, $username, $password)or die("Can't connect with mysql: ".mysql_error());
@@ -26,38 +19,4 @@
 		}
 	}
 	echo "uw cijfer is: " . $cijfer;
-/*
-if (isset($_POST['vraag1'])) {
-	switch ($_POST['vraag1']) {
-		case "goed": {
-			$cijfer =+ 1;
-			break;
-		}
-	}
-}
-if (isset($_POST['vraag2'])) {
-	switch ($_POST['vraag2']) {
-		case "goed": {
-			$cijfer += 1;
-			break;
-		}
-	}
-}
-if (isset($_POST['vraag3'])) {
-	switch ($_POST['vraag3']) {
-		case "goed": {
-			$cijfer += 1;
-			break;
-		}
-	}
-}
-if (isset($_POST['vraag4'])) {
-	switch ($_POST['vraag4']) {
-		case "goed": {
-			$cijfer += 1;
-			break;
-		}
-
-	}
-} */
 ?>
