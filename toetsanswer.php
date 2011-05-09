@@ -13,17 +13,23 @@
 			mysql_select_db($db_name)or die("Database doesn't exist or isn't reachable");
 
 			$cijfer = 0;
-
-		for ($count = 1; $count < mysql_num_rows(mysql_query("SELECT vraag FROM $tbl_name")); $count++) {
-			if (isset($_POST['vraag' . $count])) {
-				if ($_POST['vraag' . $count] == "goed") {
-					$cijfer += 0.5;
+		$rows = mysql_num_rows(mysql_query("SELECT vraag FROM $tbl_name"));
+		if ($rows > 0) {
+			for ($count = 1; $count < $rows; $count++) {
+				if (isset($_POST['vraag' . $count])) {
+					if ($_POST['vraag' . $count] == "goed") {
+						$cijfer += 0.5;
+					} else {
+						echo "Fout ;-D";
+					}
+				}else{
+					echo $count . "-> Niet gedefinieerd";
 				}
-			}else{
-				echo "Niet gedefinieerd";
 			}
+			echo "uw cijfer is: ".$cijfer;
+		} else {
+			echo "Database probleem? Geen vragen present";
 		}
-		echo "uw cijfer is: ".$cijfer;
 /*
 if (isset($_POST['vraag1'])) {
 	switch ($_POST['vraag1']) {
