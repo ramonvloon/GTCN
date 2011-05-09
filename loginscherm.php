@@ -13,7 +13,7 @@
     <body>
         <div id="topbar">
             <div id="duoselectionbuttons">
-                <a href="index.php">Homepage</a><a href="registreer.php">Registreer</a>
+                <a href="index.php">Hoofdpagina</a><a href="registreer.php">Registreer</a>
             </div>    
         </div>
 		<?php
@@ -38,17 +38,17 @@
 				$result=mysql_query($sql);
 				
 				if (empty($myusername) && empty($_POST['password'])) {
-					echo "Username and Password are empty, Please try again.";
+					echo "Gebruikersnaam en wachtwoord zijn niet ingevuld. Probeer het opnieuw.";
 					exit();
 				}
 
 				if (empty($myusername)){
-					echo "Username is empty, Please try again.";
+					echo "Gebruikersnaam is niet ingevuld. Probeer het opnieuw.";
 					exit();
 				}
 
 				if (empty($_POST['password'])){
-					echo "Password is empty, Please try again.";
+					echo "Wachtwoord is niet ingevuld. Probeer het opnieuw.";
 					exit();
 				}
 				
@@ -57,7 +57,7 @@
 					$_SESSION['username'] = $myusername;
 					$_SESSION['password'] = $mypassword;
 				}else {
-					echo "Wrong Username or Password";
+					echo "Verkeerde gebruikersnaam of wachtwoord.";
 				}
 											
 				$sql1 = "SELECT `username` FROM `members` WHERE rank=1";
@@ -84,12 +84,12 @@
                                     <td colspan="3"><strong>Login </strong></td>
                                 </tr>
                                 <tr>
-                                    <td width="78">Username</td>
+                                    <td width="78">Gebruikersnaam</td>
                                     <td width="6">:</td>
                                     <td width="294"><input name="username" type="text" id="username"></td>
                                 </tr>
                                 <tr>
-                                    <td>Password</td>
+                                    <td>Wachtwoord</td>
                                     <td>:</td>
                                     <td><input name="password" type="password" id="password"></td>
                                 </tr>
@@ -106,7 +106,7 @@
         </div>
 		</table>
         <div id="footer">
-            <a class="noeffect">please <a href="registreer.php">Register</a> or <a href="loginscherm.php">Login</a></a>
+            <a class="noeffect"><a href="registreer.php">Registeer je</a> of <a href="loginscherm.php">Meld je aan</a></a>
             <br><br>
             <a class="noeffect" href="over.html">gemaakt door SSS301</a>
         </div>

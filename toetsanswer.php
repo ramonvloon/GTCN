@@ -13,7 +13,7 @@
 			mysql_select_db($db_name)or die("Database doesn't exist or isn't reachable");
 
 			$cijfer = 0;
-			
+
 		for ($count = 1; $count < mysql_num_rows(mysql_query("SELECT vraag FROM $tbl_name")); $count++; ) {
 			if ($_POST['vraag' . $count] == "goed") {
 				$cijfer += 0.5 ;
