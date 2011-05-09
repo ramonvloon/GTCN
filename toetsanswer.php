@@ -14,11 +14,16 @@
 
 			$cijfer = 0;
 
-		for ($count = 1; $count < mysql_num_rows(mysql_query("SELECT vraag FROM $tbl_name")); $count++; ) {
-			if ($_POST['vraag' . $count] == "goed") {
-				$cijfer += 0.5 ;
+		for ($count = 1; $count < mysql_num_rows(mysql_query("SELECT vraag FROM $tbl_name")); $count++) {
+			if (isset($_POST['vraag' . $count])) {
+				if ($_POST['vraag' . $count] == "goed") {
+					$cijfer += 0.5;
+				}
+			}else{
+				echo "Niet gedefinieerd";
 			}
 		}
+		echo "uw cijfer is: ".$cijfer;
 /*
 if (isset($_POST['vraag1'])) {
 	switch ($_POST['vraag1']) {
@@ -53,6 +58,4 @@ if (isset($_POST['vraag4'])) {
 
 	}
 } */
-
-echo "uw cijfer is: ".$cijfer;
 ?>
