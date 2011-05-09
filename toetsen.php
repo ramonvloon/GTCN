@@ -29,10 +29,9 @@
 				echo $fields[0], "- ", $fields[1];
 				?>
 				<br>
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields[2];?><br>
-				
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout">Piet <br>
-				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout">Puk<br>					
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="goed"><?php echo $fields[2];?><br>			
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields[3];?><br>
+				<input type="radio" name="vraag<?php echo $counter; ?>" value="fout"><?php echo $fields[4];?><br>					
 				<?php
 				$counter++;
 			}
