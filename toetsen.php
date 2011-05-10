@@ -34,7 +34,6 @@
 				}
 				echo '<br>';
 				$random3 = rand(1, 6);
-				$antwoord = 
 				switch($random3) {
 					case 1: {	// Goed, Fout1, Fout2
 						echo getAntwoordCode($fields);
