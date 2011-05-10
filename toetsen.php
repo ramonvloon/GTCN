@@ -33,18 +33,85 @@
 					}
 				}
 				echo '<br>';
-				echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$seed.'">'.$fields['antwoord'];
-				echo '<br>';
-				echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$random1.'">'.$fields['fout1'];
-				echo '<br>';
-				if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
-					echo '<input type="radio" name="vraag'.$fields['id'].'" value="'.$random2.'">'.$fields['fout2'];
-					echo '<br>';
+				$random3 = rand(1, 6);
+				$antwoord = 
+				switch($random3) {
+					case 1: {	// Goed, Fout1, Fout2
+						echo getAntwoordCode($fields);
+						echo getFout1Code($fields, $random1);
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						break;
+					}
+					case 2: {	// Goed, Fout2, Fout1
+						echo getAntwoordCode($fields);
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						echo getFout1Code($fields, $random1);
+						break;
+					}
+					case 3: {	// Fout1, Goed, Fout2
+						echo getFout1Code($fields, $random1);
+						echo getAntwoordCode($fields);
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						break;
+					}
+					case 4: {	// Fout1, Fout2, Goed
+						echo getFout1Code($fields, $random1);
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						echo getAntwoordCode($fields);
+						break;
+					}
+					case 5: {	// Fout2, Fout1, Goed
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						echo getFout1Code($fields, $random1);
+						echo getAntwoordCode($fields);
+						break;
+					}
+					case 6: {	// Fout2, Goed, Fout1
+						if ($fields['fout2'] != "") {	// Als het veld niet leeg is (oftewel er zijn 3 antwoorden, 1 goede en 2 foute)
+							echo getFout2Code($fields, $random2);
+						}
+						echo getAntwoordCode($fields);
+						echo getFout1Code($fields, $random1);
+						break;
+					}
+					default: {
+						echo "Error while loading questions, we've got a random option nr that shouldn't occur: " . $random3;
+					}
 				}
 				$counter++;
 			}
 			?>
-			<input type="submit" value="Controleer antwoord"> 
+			<input type="submit" value="Controleer antwoord">
 		</form>
 	</body>
-</html> 
+</html>
+<?php
+function getAntwoordCode($fields) {
+	return '
+		<input type="radio" name="vraag'.$fields['id'].'" value="'.$fields['seed'].'">'.$fields['antwoord'].'
+		<br>
+	';
+}
+function getFout1Code($fields, $random) {
+	return '
+		<input type="radio" name="vraag'.$fields['id'].'" value="'.$random.'">'.$fields['fout1'].'
+		<br>
+	';
+}
+function getFout2Code($fields, $random) {
+	return '
+		<input type="radio" name="vraag'.$fields['id'].'" value="'.$random.'">'.$fields['fout2'].'
+		<br>
+	';
+}
+?>
