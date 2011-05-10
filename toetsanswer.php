@@ -11,11 +11,7 @@
 		if (isset($_POST['vraag' . $fields['id']])) {
 			if ($_POST['vraag' . $fields['id']] == $fields['seed']) {
 				$cijfer += 0.5;
-			} else {
-				echo $fields['id'] . " --> FOUT XD";
 			}
-		} else {
-			echo $fields['id'] . " --> niet gedefinieerd";
 		}
 	}
 	echo "uw cijfer is: " . $cijfer;
